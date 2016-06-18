@@ -17,6 +17,7 @@ angular.
 
             function init () {
                 self.fromTimestamp = moment();
+                self.fromTimestampFormatted = self.fromTimestamp.format("dddd, MMMM Do YYYY, h:mm:ss a");
 
                 self.fromYear = self.fromTimestamp.year();
                 self.fromMonth = self.fromTimestamp.month();
@@ -46,6 +47,8 @@ angular.
                     .minute(self.fromMinute)
                     .second(self.fromSecond);
 
+                self.fromTimestampFormatted = self.fromTimestamp.format("dddd, MMMM Do YYYY, h:mm:ss a");
+
                 calculateTo();
             }
 
@@ -64,6 +67,8 @@ angular.
                     .add(self.modMinutes, 'minutes')
                     .add(self.modSeconds, 'seconds');
 
+                self.toTimestampFormatted = self.toTimestamp.format("dddd, MMMM Do YYYY, h:mm:ss a");
+
                 self.toYear = self.toTimestamp.year();
                 self.toMonth = self.toTimestamp.month();
                 self.toWeek = self.toTimestamp.week();
@@ -76,5 +81,6 @@ angular.
             function reset () {
                 init();
             }
+
         }
     });
