@@ -1,71 +1,149 @@
 <div class="container">
   <h1>time-calc</h1>
-  <h2>From</h2>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="fromTimestamp" class="col-sm-2 control-label">Timestamp</label>
-      <div class="col-sm-10">
-        <input id="fromTimestamp" class="form-control" ng-model="$ctrl.fromTimestamp">
-      </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>From</h2>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="fromYear" class="col-sm-2 control-label">Year</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromYear" class="form-control" ng-model="$ctrl.fromYear" ng-change="$ctrl.calculateFrom()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromMonth" class="col-sm-2 control-label">Month</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromMonth" class="form-control" ng-model="$ctrl.fromMonth" ng-change="$ctrl.calculateFrom()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromWeek" class="col-sm-2 control-label">Week</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromWeek" class="form-control" ng-model="$ctrl.fromWeek" disabled="true">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromDate" class="col-sm-2 control-label">Date</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromDate" class="form-control" ng-model="$ctrl.fromDate" ng-change="$ctrl.calculateFrom()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromHour" class="col-sm-2 control-label">Hour</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromHour" class="form-control" ng-model="$ctrl.fromHour" ng-change="$ctrl.calculateFrom()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromMinute" class="col-sm-2 control-label">Minute</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromMinute" class="form-control" ng-model="$ctrl.fromMinute" ng-change="$ctrl.calculateFrom()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fromSecond" class="col-sm-2 control-label">Second</label>
+          <div class="col-sm-10">
+            <input type="number" id="fromSecond" class="form-control" ng-model="$ctrl.fromSecond" ng-change="$ctrl.calculateFrom()">
+          </div>
+        </div>
+      </form>
     </div>
-  <h2>Modifiers</h2>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="modYears" class="col-sm-2 control-label">Years</label>
-      <div class="col-sm-10">
-        <input type="number" id="modYears" class="form-control" ng-model="$ctrl.modYears" placeholder="Years">
-      </div>
+    <div class="col-md-4">
+      <h2>Modifiers</h2>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="modYears" class="col-sm-2 control-label">Years</label>
+          <div class="col-sm-10">
+            <input type="number" id="modYears" class="form-control" ng-model="$ctrl.modYears" ng-change="$ctrl.calculateTo()" placeholder="Years">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modMonths" class="col-sm-2 control-label">Months</label>
+          <div class="col-sm-10">
+            <input type="number" id="modMonths" class="form-control" ng-model="$ctrl.modMonths" ng-change="$ctrl.calculateTo()" placeholder="Months">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modWeeks" class="col-sm-2 control-label">Weeks</label>
+          <div class="col-sm-10">
+            <input type="number" id="modWeeks" class="form-control" ng-model="$ctrl.modWeeks" ng-change="$ctrl.calculateTo()" placeholder="Weeks">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modDays" class="col-sm-2 control-label">Days</label>
+          <div class="col-sm-10">
+            <input type="number" id="modDays" class="form-control" ng-model="$ctrl.modDays" ng-change="$ctrl.calculateTo()" placeholder="Days">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modHours" class="col-sm-2 control-label">Hours</label>
+          <div class="col-sm-10">
+            <input type="number" id="modHours" class="form-control" ng-model="$ctrl.modHours" ng-change="$ctrl.calculateTo()" placeholder="Hours">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modMinutes" class="col-sm-2 control-label">Minutes</label>
+          <div class="col-sm-10">
+            <input type="number" id="modMinutes" class="form-control" ng-model="$ctrl.modMinutes" ng-change="$ctrl.calculateTo()" placeholder="Minutes">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="modSeconds" class="col-sm-2 control-label">Seconds</label>
+          <div class="col-sm-10">
+            <input type="number" id="modSeconds" class="form-control" ng-model="$ctrl.modSeconds" ng-change="$ctrl.calculateTo()" placeholder="Seconds">
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="modMonths" class="col-sm-2 control-label">Months</label>
-      <div class="col-sm-10">
-        <input type="number" id="modMonths" class="form-control" ng-model="$ctrl.modMonths" placeholder="Months">
-      </div>
+    <div class="col-md-4">
+      <h2>To</h2>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="toYear" class="col-sm-2 control-label">Year</label>
+          <div class="col-sm-10">
+            <input type="number" id="toYear" class="form-control" ng-model="$ctrl.toYear" ng-change="$ctrl.calculateMod()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toMonth" class="col-sm-2 control-label">Month</label>
+          <div class="col-sm-10">
+            <input type="number" id="toMonth" class="form-control" ng-model="$ctrl.toMonth" ng-change="$ctrl.calculateMod()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toWeek" class="col-sm-2 control-label">Week</label>
+          <div class="col-sm-10">
+            <input type="number" id="toWeek" class="form-control" ng-model="$ctrl.toWeek" disabled="true">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toDate" class="col-sm-2 control-label">Date</label>
+          <div class="col-sm-10">
+            <input type="number" id="toDate" class="form-control" ng-model="$ctrl.toDate" ng-change="$ctrl.calculateMod()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toHour" class="col-sm-2 control-label">Hour</label>
+          <div class="col-sm-10">
+            <input type="number" id="toHour" class="form-control" ng-model="$ctrl.toHour" ng-change="$ctrl.calculateMod()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toMinute" class="col-sm-2 control-label">Minute</label>
+          <div class="col-sm-10">
+            <input type="number" id="toMinute" class="form-control" ng-model="$ctrl.toMinute" ng-change="$ctrl.calculateMod()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="toSecond" class="col-sm-2 control-label">Second</label>
+          <div class="col-sm-10">
+            <input type="number" id="toSecond" class="form-control" ng-model="$ctrl.toSecond" ng-change="$ctrl.calculateMod()">
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="modWeeks" class="col-sm-2 control-label">Weeks</label>
-      <div class="col-sm-10">
-        <input type="number" id="modWeeks" class="form-control" ng-model="$ctrl.modWeeks" placeholder="Weeks">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="modDays" class="col-sm-2 control-label">Days</label>
-      <div class="col-sm-10">
-        <input type="number" id="modDays" class="form-control" ng-model="$ctrl.modDays" placeholder="Days">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="modHours" class="col-sm-2 control-label">Hours</label>
-      <div class="col-sm-10">
-        <input type="number" id="modHours" class="form-control" ng-model="$ctrl.modHours" placeholder="Hours">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="modMinutes" class="col-sm-2 control-label">Minutes</label>
-      <div class="col-sm-10">
-        <input type="number" id="modMinutes" class="form-control" ng-model="$ctrl.modMinutes" placeholder="Minutes">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="modSeconds" class="col-sm-2 control-label">Seconds</label>
-      <div class="col-sm-10">
-        <input type="number" id="modSeconds" class="form-control" ng-model="$ctrl.modSeconds" placeholder="Seconds">
-      </div>
-    </div>
-  </form>
-  <h2>To</h2>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="toTimestamp" class="col-sm-2 control-label">Timestamp</label>
-      <div class="col-sm-10">
-        <input id="toTimestamp" class="form-control" ng-model="$ctrl.toTimestamp">
-      </div>
-    </div>
-  </form>
+  </div>
   <div class="form-group">
-    <form ng-submit="$ctrl.calculate()">
-      <input type="submit" class="btn btn-default" value="Calculate">
-    </form>
     <form ng-submit="$ctrl.reset()">
       <input type="submit" class="btn btn-default" value="Reset">
     </form>
