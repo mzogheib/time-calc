@@ -13,37 +13,31 @@
         <div class="form-group">
           <label for="fromMonth" class="col-sm-2 control-label">Month</label>
           <div class="col-sm-10">
-            <input type="number" id="fromMonth" class="form-control" ng-model="$ctrl.fromMonth" ng-change="$ctrl.calculateFrom()">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="fromWeek" class="col-sm-2 control-label">Week</label>
-          <div class="col-sm-10">
-            <input type="number" id="fromWeek" class="form-control" ng-model="$ctrl.fromWeek" disabled="true">
+            <input type="number" min="0" max="11" id="fromMonth" class="form-control" ng-model="$ctrl.fromMonth" ng-change="$ctrl.calculateFrom()">
           </div>
         </div>
         <div class="form-group">
           <label for="fromDate" class="col-sm-2 control-label">Date</label>
           <div class="col-sm-10">
-            <input type="number" id="fromDate" class="form-control" ng-model="$ctrl.fromDate" ng-change="$ctrl.calculateFrom()">
+            <input type="number" min="1" max="{{ $ctrl.fromEOM }}" id="fromDate" class="form-control" ng-model="$ctrl.fromDate" ng-change="$ctrl.calculateFrom()">
           </div>
         </div>
         <div class="form-group">
           <label for="fromHour" class="col-sm-2 control-label">Hour</label>
           <div class="col-sm-10">
-            <input type="number" id="fromHour" class="form-control" ng-model="$ctrl.fromHour" ng-change="$ctrl.calculateFrom()">
+            <input type="number" min="0" max="23" id="fromHour" class="form-control" ng-model="$ctrl.fromHour" ng-change="$ctrl.calculateFrom()">
           </div>
         </div>
         <div class="form-group">
           <label for="fromMinute" class="col-sm-2 control-label">Minute</label>
           <div class="col-sm-10">
-            <input type="number" id="fromMinute" class="form-control" ng-model="$ctrl.fromMinute" ng-change="$ctrl.calculateFrom()">
+            <input type="number" min="0" max="59" id="fromMinute" class="form-control" ng-model="$ctrl.fromMinute" ng-change="$ctrl.calculateFrom()">
           </div>
         </div>
         <div class="form-group">
           <label for="fromSecond" class="col-sm-2 control-label">Second</label>
           <div class="col-sm-10">
-            <input type="number" id="fromSecond" class="form-control" ng-model="$ctrl.fromSecond" ng-change="$ctrl.calculateFrom()">
+            <input type="number" min="0" max="59" id="fromSecond" class="form-control" ng-model="$ctrl.fromSecond" ng-change="$ctrl.calculateFrom()">
           </div>
         </div>
       </form>
@@ -62,12 +56,6 @@
           <label for="modMonths" class="col-sm-2 control-label">Months</label>
           <div class="col-sm-10">
             <input type="number" id="modMonths" class="form-control" ng-model="$ctrl.modMonths" ng-change="$ctrl.calculateTo()" placeholder="Months">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="modWeeks" class="col-sm-2 control-label">Weeks</label>
-          <div class="col-sm-10">
-            <input type="number" id="modWeeks" class="form-control" ng-model="$ctrl.modWeeks" ng-change="$ctrl.calculateTo()" placeholder="Weeks">
           </div>
         </div>
         <div class="form-group">
@@ -108,37 +96,31 @@
         <div class="form-group">
           <label for="toMonth" class="col-sm-2 control-label">Month</label>
           <div class="col-sm-10">
-            <input type="number" id="toMonth" class="form-control" ng-model="$ctrl.toMonth" ng-change="$ctrl.calculateMod()">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="toWeek" class="col-sm-2 control-label">Week</label>
-          <div class="col-sm-10">
-            <input type="number" id="toWeek" class="form-control" ng-model="$ctrl.toWeek" disabled="true">
+            <input type="number" min="0" max="11" id="toMonth" class="form-control" ng-model="$ctrl.toMonth" ng-change="$ctrl.calculateMod()">
           </div>
         </div>
         <div class="form-group">
           <label for="toDate" class="col-sm-2 control-label">Date</label>
           <div class="col-sm-10">
-            <input type="number" id="toDate" class="form-control" ng-model="$ctrl.toDate" ng-change="$ctrl.calculateMod()">
+            <input type="number" min="1" max="{{ $ctrl.toEOM }}" id="toDate" class="form-control" ng-model="$ctrl.toDate" ng-change="$ctrl.calculateMod()">
           </div>
         </div>
         <div class="form-group">
           <label for="toHour" class="col-sm-2 control-label">Hour</label>
           <div class="col-sm-10">
-            <input type="number" id="toHour" class="form-control" ng-model="$ctrl.toHour" ng-change="$ctrl.calculateMod()">
+            <input type="number" min="0" max="23" id="toHour" class="form-control" ng-model="$ctrl.toHour" ng-change="$ctrl.calculateMod()">
           </div>
         </div>
         <div class="form-group">
           <label for="toMinute" class="col-sm-2 control-label">Minute</label>
           <div class="col-sm-10">
-            <input type="number" id="toMinute" class="form-control" ng-model="$ctrl.toMinute" ng-change="$ctrl.calculateMod()">
+            <input type="number" min="0" max="59" id="toMinute" class="form-control" ng-model="$ctrl.toMinute" ng-change="$ctrl.calculateMod()">
           </div>
         </div>
         <div class="form-group">
           <label for="toSecond" class="col-sm-2 control-label">Second</label>
           <div class="col-sm-10">
-            <input type="number" id="toSecond" class="form-control" ng-model="$ctrl.toSecond" ng-change="$ctrl.calculateMod()">
+            <input type="number" min="0" max="59" id="toSecond" class="form-control" ng-model="$ctrl.toSecond" ng-change="$ctrl.calculateMod()">
           </div>
         </div>
       </form>
