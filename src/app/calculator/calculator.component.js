@@ -4,7 +4,7 @@
 angular.
     module('calculator').
     component('calculator', {
-        templateUrl: 'js/app/calculator/calculator.template.html',
+        templateUrl: 'templates/calculator/calculator.template.html',
         controller: function TimeCalcController($scope) {
             var self = this;
 
