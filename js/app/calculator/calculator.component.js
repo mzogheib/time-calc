@@ -38,18 +38,17 @@ angular.
             }
 
             function calculateFrom () {
-                self.fromTimestamp
-                    .year(self.fromYear)
-                    .hour(self.fromHour)
-                    .minute(self.fromMinute)
-                    .second(self.fromSecond);
-
                 // Calculate the EOM for the month that has been selected and wind back date if it exceeds EOM
                 self.fromEOM = self.fromTimestamp.month(self.fromMonth).endOf("month").date();
                 if (self.fromDate > self.fromEOM) {
                     self.fromDate = self.fromEOM;
                 }
-                self.fromTimestamp.date(self.fromDate);
+                self.fromTimestamp
+                    .year(self.fromYear)
+                    .date(self.fromDate)
+                    .hour(self.fromHour)
+                    .minute(self.fromMinute)
+                    .second(self.fromSecond);
 
                 self.fromTimestampFormatted = self.fromTimestamp.format("dddd, MMMM Do YYYY, h:mm:ss a");
 
@@ -57,18 +56,17 @@ angular.
             }
 
             function calculateMod () {
-                self.toTimestamp
-                    .year(self.toYear)
-                    .hour(self.toHour)
-                    .minute(self.toMinute)
-                    .second(self.toSecond);
-
                 // Calculate the EOM for the month that has been selected and wind back date if it exceeds EOM
                 self.toEOM = self.toTimestamp.month(self.toMonth).endOf("month").date();
                 if (self.toDate > self.toEOM) {
                     self.toDate = self.toEOM;
                 }
-                self.toTimestamp.date(self.toDate);
+                self.toTimestamp
+                    .year(self.toYear)
+                    .date(self.toDate)
+                    .hour(self.toHour)
+                    .minute(self.toMinute)
+                    .second(self.toSecond);
 
                 self.toTimestampFormatted = self.toTimestamp.format("dddd, MMMM Do YYYY, h:mm:ss a");
 
