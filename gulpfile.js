@@ -1,8 +1,11 @@
 var argv = require('minimist')(process.argv.slice(2));
 var concat = require('gulp-concat');
 var del = require('del');
+var fs = require('fs');
+var ftp = require('vinyl-ftp');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
+var gutil = require('gulp-util');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
 var uglify = require('gulp-uglify');
@@ -40,7 +43,9 @@ var paths = {
             'node_modules/moment/min/moment.min.js',
         ],
         jQuery: 'src/vendor/jquery-1.11.2.min.js'
-    }
+    },
+
+    ftpConfig: './ftp-config.json'
 };
 
 // Production option to minify code
@@ -124,4 +129,32 @@ gulp.task('copy', false, function () {
 
     gulp.src(paths.vendorFiles.jQuery)
         .pipe(gulp.dest(paths.dest.js));
+});
+
+/**
+ * Deploy
+ */
+gulp.task('deploy', function () {
+    // Set prod to true to minify
+    PROD = true;
+    runSequence('build', 'upload');
+});
+
+/**
+ * Upload to ftp
+ */
+gulp.task('upload', function () {
+    var config = JSON.parse(fs.readFileSync(paths.ftpConfig));
+
+	var conn = ftp.create({
+		host: config.host,
+		user: config.user,
+		password: config.password,
+		parallel: config.parallel,
+		log: gutil.log
+	});
+
+    return gulp.src(paths.dest.root + '/**', { buffer: false })
+        .pipe(conn.newer(config.webroot)) // only upload newer files
+        .pipe(conn.dest(config.webroot));
 });
