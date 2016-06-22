@@ -3,6 +3,7 @@ var del = require('del');
 var gulp = require('gulp');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
+var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
 var paths = {
@@ -88,6 +89,7 @@ gulp.task('clean', false, function () {
 gulp.task('appJS', false, function () {
     return gulp.src(paths.appFiles.js)
         .pipe(concat('app.js'))
+        .pipe(uglify())
         .pipe(gulp.dest(paths.dest.js));
 });
 
@@ -95,6 +97,7 @@ gulp.task('appJS', false, function () {
 gulp.task('vendorJS', false, function () {
     return gulp.src(paths.vendorFiles.js)
         .pipe(concat('vendor.js'))
+        .pipe(uglify())
         .pipe(gulp.dest(paths.dest.js));
 });
 
