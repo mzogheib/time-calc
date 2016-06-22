@@ -1,6 +1,8 @@
+var argv = require('minimist')(process.argv.slice(2));
 var concat = require('gulp-concat');
 var del = require('del');
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
 var uglify = require('gulp-uglify');
@@ -40,6 +42,9 @@ var paths = {
         jQuery: 'src/vendor/jquery-1.11.2.min.js'
     }
 };
+
+// Production option to minify code
+var PROD = argv.prod;
 
 /**
  * Main Tasks
@@ -85,19 +90,19 @@ gulp.task('clean', false, function () {
     return del([paths.dest.root]);
 });
 
-// Concat app JS files to build
+// Concat app JS files to build. Minify if going to prod.
 gulp.task('appJS', false, function () {
     return gulp.src(paths.appFiles.js)
         .pipe(concat('app.js'))
-        .pipe(uglify())
+        .pipe(gulpif(PROD, uglify()))
         .pipe(gulp.dest(paths.dest.js));
 });
 
-// Concat vendor JS files to build
+// Concat vendor JS files to build. Minify if going to prod.
 gulp.task('vendorJS', false, function () {
     return gulp.src(paths.vendorFiles.js)
         .pipe(concat('vendor.js'))
-        .pipe(uglify())
+        .pipe(gulpif(PROD, uglify()))
         .pipe(gulp.dest(paths.dest.js));
 });
 
