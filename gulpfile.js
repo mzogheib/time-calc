@@ -57,8 +57,12 @@ gulp.task('watch', ['build'], function () {
         gulp.start('copy');
     });
 
+    watch(paths.vendorFiles.js, function () {
+        gulp.start('vendorJS');
+    });
+
     watch(paths.appFiles.js, function () {
-        gulp.start('concatJS');
+        gulp.start('appJS');
     });
 
     watch(paths.appFiles.templates, function () {
@@ -70,7 +74,7 @@ gulp.task('watch', ['build'], function () {
  * Build task
  */
 gulp.task('build', false, function (cb) {
-    runSequence('clean', ['concatJS', 'copy'], cb);
+    runSequence('clean', ['appJS', 'vendorJS', 'copy'], cb);
 });
 
 /**
@@ -80,10 +84,17 @@ gulp.task('clean', false, function () {
     return del([paths.dest.root]);
 });
 
-// Concat the JS files to dist
-gulp.task('concatJS', false, function () {
-    return gulp.src(paths.vendorFiles.js.concat(paths.appFiles.js))
-        .pipe(concat('main.js'))
+// Concat app JS files to build
+gulp.task('appJS', false, function () {
+    return gulp.src(paths.appFiles.js)
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(paths.dest.js));
+});
+
+// Concat vendor JS files to build
+gulp.task('vendorJS', false, function () {
+    return gulp.src(paths.vendorFiles.js)
+        .pipe(concat('vendor.js'))
         .pipe(gulp.dest(paths.dest.js));
 });
 
